@@ -1,15 +1,23 @@
 <template>
   <div>
-    
+    <ul class="list" v-for="(item, index) in this.data" :key="index">
+      <ListItem v-bind:data="item"/>
+    </ul>
   </div>
 </template>
 
 <script>
+import ListItem from './ListItem.vue'
+
 export default {
   name: 'List',
   props: {
-    data: null,
-  }
+    data: {
+      type: Object, 
+      default: {results: []}
+    },
+  },
+  components: {ListItem}
 }
 </script>
 

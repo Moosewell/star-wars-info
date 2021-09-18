@@ -43,7 +43,7 @@ export default {
 				const data = await response.json()
         console.log('Response Status: ' + response.status)
 				console.log('Data from API:', data);
-        this.$emit('SearchData', data)
+        this.$emit('SearchData', data.results)
 			}
 			catch(error) {
         console.log('Something went wrong. Please try again later. ')
