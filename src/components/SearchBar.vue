@@ -1,6 +1,6 @@
 <template>
   <div>
-  <input v-model="inputString"  @keyup="Search" type="text" v-bind:placeholder="searchBarPlaceholder">
+  <input v-model="inputString"  @keyup="BuildSearchString" type="text" v-bind:placeholder="searchBarPlaceholder">
   </div>
 </template>
 
@@ -17,25 +17,19 @@ export default {
     searchBarPlaceholder(){
       return `Search for ${this.category}`
     },
-    determineUrl(){
-      if(this.category == null)
-      {
-        return `https://swapi.dev/api/films`
-      }
-      if(this.inputString == '')
-      {
-        console.log("filterless")
-        return `https://swapi.dev/api/${this.category}`
-      }
-      else
-      {
-        return `https://swapi.dev/api/${this.category}/?search=${this.inputString}`
-      }
-    },
   },
   methods: {
-    async Search(){
-      const url = this.determineUrl
+    async BuildSearchString()
+    {
+      const string = `https://swapi.dev/api/${this.category}/`
+      this.Search(string)
+    },
+    async Search(baseUrl){
+      const url = baseUrl + `?search=${this.inputString}`
+      this.FetchData(url)
+    },
+    async FetchData(url)
+    {
       console.log(url)
       try {
 				// Fetch skickar ett GET request till URL
@@ -43,12 +37,12 @@ export default {
 				const data = await response.json()
         console.log('Response Status: ' + response.status)
 				console.log('Data from API:', data);
-        this.$emit('SearchData', data.results)
+        this.$emit('SearchData', data)
 			}
 			catch(error) {
         console.log('Something went wrong. Please try again later. ')
 			}
-    }
+    },
   },
 
 }

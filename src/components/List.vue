@@ -1,23 +1,29 @@
 <template>
-  <div>
-    <ul class="list" v-for="(item, index) in this.data" :key="index">
-      <ListItem v-bind:data="item"/>
-    </ul>
-  </div>
+    <ol class="list">
+      <div v-for="(item, index) in this.data.results" :key="index">
+      <li v-if="category == 'films'"><FilmsListItem v-bind:data="item"/></li>
+      <li v-if="category == 'people'"><PeopleListItem v-bind:data="item"/></li>
+      </div>
+    </ol>
 </template>
 
 <script>
-import ListItem from './ListItem.vue'
+import FilmsListItem from './FilmsListItem.vue'
+import PeopleListItem from './PeopleListItem.vue'
 
 export default {
   name: 'List',
   props: {
     data: {
       type: Object, 
-      default: {results: []}
+      default: {results: []},
     },
+    category:{
+      type: String,
+      default: 'films',
+    }
   },
-  components: {ListItem}
+  components: {FilmsListItem, PeopleListItem}
 }
 </script>
 

@@ -1,14 +1,12 @@
 <template>
   <div>
-    <li>
-      {{this.data}}
-    </li>
+      {{this.data.name}}
   </div>
 </template>
 
 <script>
 export default {
-  name: 'List',
+  name: 'FilmsListItem',
   props: {
     data: Object,
   }
