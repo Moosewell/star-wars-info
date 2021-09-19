@@ -1,6 +1,6 @@
 <template>
 <div>
-    <ol class="list">
+    <ol class="list" ref="list">
       <div v-for="(item, index) in this.data.results" :key="index">
       <li v-if="category == 'films'"><FilmsListItem v-bind:data="item"/></li>
       <li v-if="category == 'people'"><PeopleListItem v-bind:data="item"/></li>
@@ -24,13 +24,14 @@ export default {
     category:{
       type: String,
       default: 'films',
-    }
+    },
+    people: []
   },
   components: {FilmsListItem, PeopleListItem, Buttons},
   methods:{
     SwitchPage(url){
       this.$emit("SwitchPage", url)
-    }
+    },
   }
 }
 </script>
