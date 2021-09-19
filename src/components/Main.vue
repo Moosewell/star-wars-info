@@ -2,7 +2,7 @@
   <div>
     <SearchBar ref="search" v-on:SearchData="handleSearchData" v-bind:category="searchCategory"/>
     <Menu v-on:pickCategory="handlePickCategory"/>
-    <List v-bind:data="data" v-bind:category="searchCategory"/>
+    <List v-bind:data="data" v-bind:category="searchCategory" v-on:SwitchPage="SwitchPage"/>
   </div>
 </template>
 
@@ -34,11 +34,14 @@ export default {
   methods:{
     handlePickCategory(category) {
       this.searchCategory = category
-      this.$refs.search.Search(`https://swapi.dev/api/${this.searchCategory}/`)
+      this.$refs.search.Search(`https://swapi.dev/api/${this.searchCategory}/?`)
     },
     handleSearchData(searchData){
       this.data = searchData
       console.log(this.data)
+    },
+    SwitchPage(url){
+      this.$refs.search.FetchData(url)
     }
   },
   

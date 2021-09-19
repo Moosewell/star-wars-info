@@ -21,11 +21,11 @@ export default {
   methods: {
     async BuildSearchString()
     {
-      const string = `https://swapi.dev/api/${this.category}/`
+      const string = `https://swapi.dev/api/${this.category}/?`
       this.Search(string)
     },
     async Search(baseUrl){
-      const url = baseUrl + `?search=${this.inputString}`
+      const url = baseUrl + `search=${this.inputString}`
       this.FetchData(url)
     },
     async FetchData(url)
