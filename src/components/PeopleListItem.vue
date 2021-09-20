@@ -1,13 +1,13 @@
 <template>
   <div>
       <label>{{this.data.name}}</label>
-      <button v-on:click="ToggleInfo">{{isToggled ? '-' : '+'}}</button>
-      <ul v-show="isToggled">
+      <button v-on:click="ToggleInfo">{{data.isOpen ? '-' : '+'}}</button>
+      <ul v-show="data.isOpen">
         <li>Birth Year: {{this.data.birth_year}}</li>
         <li>Eye Color: {{this.data.eye_color}}</li>
         <li>Films:
           <ul>
-            <div v-for="(title, index) in this.titles" :key="index">
+            <div v-for="(title, index) in titles" :key="index">
               <li>{{title}}</li>
             </div>
           </ul>
@@ -25,16 +25,17 @@ export default {
 
   methods:{
     ToggleInfo(){
-      this.isToggled = !this.isToggled
+      this.$emit("TogglePeopleInfo", this.data.name)
+      //this.data.isOpen = !this.data.isOpen
       this.titles = []
-      if(this.isToggled)
+      if(this.data.isOpen)
       {
         this.data.films.forEach(film => {
-          this.FetchTitles(film)
+          this.FetchTitle(film)
         });
       }
     },
-    async FetchTitles(url)
+    async FetchTitle(url)
     {
       try {
 				// Fetch skickar ett GET request till URL
@@ -48,13 +49,9 @@ export default {
         console.log('Something went wrong. Please try again later. ')
 			}
     },
-    Close(){
-      this.isToggled = false
-    }
   },
 
   data: () =>({
-    isToggled: false,
     titles: [],
   })
 }

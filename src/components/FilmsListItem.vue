@@ -1,15 +1,71 @@
 <template>
   <div>
       <label>{{this.data.title}}</label>
+      <button v-on:click="ToggleInfo">{{data.isOpen ? '-' : '+'}}</button>
+      <ul v-show="data.isOpen">
+        <li>Episode ID: {{this.data.episode_id}}</li>
+        <li>Release Date: {{this.data.release_date}}</li>
+        <li>Opening Crawl: {{this.data.opening_crawl}}</li>
+        <li>Characters:
+          <ul>
+            <div v-for="(character, index) in characters" :key="index">
+              <li><PeopleListItem v-bind:data="character" v-on:TogglePeopleInfo="TogglePeopleInfo"/></li>
+            </div>
+          </ul>
+        </li>
+      </ul>
   </div>
 </template>
 
 <script>
+import PeopleListItem from './PeopleListItem.vue'
+
 export default {
-  name: 'FilmsListItem',
+  name: 'FilmListItem',
   props: {
     data: Object,
-  }
+  },
+
+  methods:{
+    ToggleInfo(){
+      this.$emit("ToggleFilmInfo", this.data.title)
+      //this.data.isOpen = !this.data.isOpen
+      this.characters = []
+      if(this.data.isOpen)
+      {
+        this.data.characters.forEach(character => {
+          this.FetchCharacter(character)
+        });
+      }
+    },
+    async FetchCharacter(url)
+    {
+      try {
+				// Fetch skickar ett GET request till URL
+				const response = await fetch(url)
+				let data = await response.json()
+        
+        let newData = {...data, isOpen: false}
+        console.log('Response Status: ' + response.status)
+				console.log('Characters from API:', newData);
+        this.characters.push(newData)
+			}
+			catch(error) {
+        console.log('Something went wrong. Please try again later. ')
+			}
+    },
+    TogglePeopleInfo(characterName){
+      let character = this.characters.find(character => character.name == characterName)
+      console.log(character)
+      character.isOpen = !character.isOpen
+    },
+  },
+
+  data: () =>({
+    characters: [],
+  }),
+
+  components: {PeopleListItem}
 }
 </script>
 
