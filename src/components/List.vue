@@ -48,11 +48,12 @@ export default {
     CheckData(){
       if(this.data.results == null || this.data.results == undefined)
       {
-        return false
+        return true
       }
       console.log('checkData',this.data)
 
-      return this.data.results.length != 0
+      return !this.data.isFetching
+      //return this.data.results.length != 0
     }
   }
 }

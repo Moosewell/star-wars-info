@@ -12,7 +12,7 @@ export default {
   },
   data: () =>({
   inputString: '',
-  data: {results: []},
+  data: {isFetching: true},
   }),
   computed: {
     searchBarPlaceholder(){
@@ -31,7 +31,7 @@ export default {
     },
     async FetchData(url)
     {
-      this.data.results = []
+      this.data.isFetching = true
       this.$emit('SearchData', this.data)
       console.log(url)
       try {
@@ -41,6 +41,8 @@ export default {
         console.log('Response Status: ' + response.status)
 				console.log('Data from API:', data);
         this.data = data
+        //this.data[isFetching] = false
+        Object.assign(this.data, {isFetching: false});
         this.$emit('SearchData', this.data)
 			}
 			catch(error) {
