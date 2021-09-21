@@ -1,8 +1,8 @@
 <template>
 <div>
-  <button :disabled="this.data.previous == null" v-on:click="$emit('SwitchPage', this.data.previous)">Previous page</button>
+  <button :disabled="this.data.previous == null || this.data.isFetching" v-on:click="$emit('SwitchPage', this.data.previous)">Previous page</button>
   <label>Page {{CalculatePage}} out of {{CalculatePageAmount}}</label>
-  <button :disabled="this.data.next == null" v-on:click="$emit('SwitchPage', this.data.next)">Next page</button>
+  <button :disabled="this.data.next == null || this.data.isFetching" v-on:click="$emit('SwitchPage', this.data.next)">Next page</button>
 </div>
 </template>
 

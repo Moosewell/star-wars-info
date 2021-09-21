@@ -1,6 +1,6 @@
 <template>
   <div>
-  <input v-model="inputString"  @keyup="BuildSearchString" type="text" v-bind:placeholder="searchBarPlaceholder">
+  <input v-model="inputString" type="text" v-bind:placeholder="searchBarPlaceholder">
   </div>
 </template>
 
@@ -13,6 +13,7 @@ export default {
   data: () =>({
   inputString: '',
   data: {isFetching: true},
+  awaitingInput: false,
   }),
   computed: {
     searchBarPlaceholder(){
@@ -31,8 +32,7 @@ export default {
     },
     async FetchData(url)
     {
-      this.data.isFetching = true
-      this.$emit('SearchData', this.data)
+      this.Fetching()
       console.log(url)
       try {
 				// Fetch skickar ett GET request till URL
@@ -49,7 +49,24 @@ export default {
         console.log('Something went wrong. Please try again later. ')
 			}
     },
+    Fetching(){
+      this.data.isFetching = true
+      this.$emit('SearchData', this.data)
+    }
   },
+  watch:{
+    inputString: function(){
+      if (!this.awaitingInput) {
+          this.Fetching()
+          setTimeout(() => {
+            this.BuildSearchString()
+            //this.fetchResults({ query: this.inputString });
+            this.awaitingInput = false;
+          }, 1000); // 1 sec delay
+        }
+        this.awaitingInput = true;
+    }
+  }
 
 }
 </script>
