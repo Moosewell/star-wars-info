@@ -12,6 +12,7 @@ export default {
   },
   data: () =>({
   inputString: '',
+  data: {results: []},
   }),
   computed: {
     searchBarPlaceholder(){
@@ -30,6 +31,8 @@ export default {
     },
     async FetchData(url)
     {
+      this.data.results = []
+      this.$emit('SearchData', this.data)
       console.log(url)
       try {
 				// Fetch skickar ett GET request till URL
@@ -37,7 +40,8 @@ export default {
 				const data = await response.json()
         console.log('Response Status: ' + response.status)
 				console.log('Data from API:', data);
-        this.$emit('SearchData', data)
+        this.data = data
+        this.$emit('SearchData', this.data)
 			}
 			catch(error) {
         console.log('Something went wrong. Please try again later. ')

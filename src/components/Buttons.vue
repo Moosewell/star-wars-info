@@ -32,7 +32,12 @@ export default {
       return 1
     },
     CalculatePageAmount(){
-      return Math.ceil(this.data.count / 10)
+      let pageAmount = Math.ceil(this.data.count / 10)
+      if(pageAmount > 0)
+      {
+        return pageAmount
+      }
+      return 1
     }
   }
 }

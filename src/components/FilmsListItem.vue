@@ -7,11 +7,12 @@
         <li>Release Date: {{this.data.release_date}}</li>
         <li>Opening Crawl: {{this.data.opening_crawl}}</li>
         <li>Characters:
-          <ul>
+          <ul v-if="CompareCharactersLength">
             <div v-for="(character, index) in characters" :key="index">
               <li><PeopleListItem v-bind:data="character" v-on:TogglePeopleInfo="TogglePeopleInfo"/></li>
             </div>
           </ul>
+          <label v-else>Fetching Data...</label>
         </li>
       </ul>
   </div>
@@ -64,7 +65,15 @@ export default {
   data: () =>({
     characters: [],
   }),
-
+  computed:{
+    CompareCharactersLength(){
+      if(!this.data.characters)
+      {
+        return false
+      }
+      return this.characters.length === this.data.characters.length
+    },
+  },
   components: {PeopleListItem}
 }
 </script>

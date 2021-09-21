@@ -2,15 +2,16 @@
   <div>
       <label>{{this.data.name}}</label>
       <button v-on:click="ToggleInfo">{{data.isOpen ? '-' : '+'}}</button>
-      <ul v-show="data.isOpen">
+      <ul v-if="data.isOpen">
         <li>Birth Year: {{this.data.birth_year}}</li>
         <li>Eye Color: {{this.data.eye_color}}</li>
         <li>Films:
-          <ul>
-            <div v-for="(title, index) in titles" :key="index">
+          <ul v-if="CompareFilmLength">
+            <div v-for="(title, index) in titles" :key="index" >
               <li>{{title}}</li>
             </div>
           </ul>
+          <label v-else>Fetching Data...</label>
         </li>
       </ul>
   </div>
@@ -26,7 +27,6 @@ export default {
   methods:{
     ToggleInfo(){
       this.$emit("TogglePeopleInfo", this.data.name)
-      //this.data.isOpen = !this.data.isOpen
       this.titles = []
       if(this.data.isOpen)
       {
@@ -53,7 +53,16 @@ export default {
 
   data: () =>({
     titles: [],
-  })
+  }),
+  computed:{
+    CompareFilmLength(){
+      if(!this.data.films)
+      {
+        return false
+      }
+      return this.titles.length === this.data.films.length
+    },
+  }
 }
 </script>
 

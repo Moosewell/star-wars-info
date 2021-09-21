@@ -37,8 +37,11 @@ export default {
       this.$refs.search.Search(`https://swapi.dev/api/${this.searchCategory}/?`)
     },
     handleSearchData(searchData){
+      if(!searchData)
+      {
       let newResults = searchData.results.map(result => ({...result, isOpen: false}))
       searchData.results = newResults
+      }
       this.data = searchData
       console.log(this.data)
     },

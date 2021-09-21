@@ -1,12 +1,13 @@
 <template>
 <div>
   <Buttons v-bind:data="data" v-on:SwitchPage="SwitchPage"/>
-    <ol class="list" ref="list">
+    <ol class="list" v-if="CheckData">
       <div v-for="(item, index) in this.data.results" :key="index">
       <li v-if="category == 'films'"><FilmsListItem v-bind:data="item" v-on:ToggleFilmInfo="ToggleFilmInfo"/></li>
       <li v-if="category == 'people'"><PeopleListItem v-bind:data="item" v-on:TogglePeopleInfo="TogglePeopleInfo"/></li>
       </div>
     </ol>
+    <label v-else>Fetching Data...</label>
 </div>
 </template>
 
@@ -41,6 +42,17 @@ export default {
       let film = this.data.results.find(result => result.title == filmTitle)
       console.log(film)
       film.isOpen = !film.isOpen
+    },
+  },
+  computed:{
+    CheckData(){
+      if(this.data.results == null || this.data.results == undefined)
+      {
+        return false
+      }
+      console.log('checkData',this.data)
+
+      return this.data.results.length != 0
     }
   }
 }
