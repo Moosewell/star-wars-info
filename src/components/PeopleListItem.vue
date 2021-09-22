@@ -22,6 +22,7 @@ export default {
   name: 'PeopleListItem',
   props: {
     data: Object,
+    category: String,
   },
 
   methods:{
@@ -68,5 +69,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+button{
+  background-color: #0b5689;
+  border: solid 0.1vw #152e3f;
+  border-radius: 0.5vw;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin-left: 1vw;
+  width: 2.5vw;
+  height: 2.5vw;
+  text-align: center;
+}
 
+button:hover{
+  border: solid 0.1vw #ffe81f;
+}
 </style>

@@ -41,7 +41,6 @@ export default {
         console.log('Response Status: ' + response.status)
 				console.log('Data from API:', data);
         this.data = data
-        //this.data[isFetching] = false
         Object.assign(this.data, {isFetching: false});
         this.$emit('SearchData', this.data)
 			}
@@ -73,5 +72,30 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  input{
+    display: block;
+    margin: auto;
+    width: 78vw;
+    margin-top: 5vw;
+    margin-bottom: 3vw;
+    height: 5vw;
+    background-color: #020619;
+    border: solid 0.2vw #0b5689;
+    border-radius: 0.5vw;
+    color: #ffe81f;
+    font-size: 2vw;
+    padding-left: 2vw;
+  }
 
+  input::placeholder{
+    color: #0b5689;
+  }
+
+  input:focus{
+    border-color: #ffe81f;
+    outline: none;
+  }
+  input:hover{
+    border-color: #ffe81f;
+  }
 </style>

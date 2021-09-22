@@ -1,10 +1,10 @@
 <template>
-<div>
+<div class="list-container" v-bind:class="{ films: category == 'films' }">
   <Buttons v-bind:data="data" v-on:SwitchPage="SwitchPage"/>
     <ol class="list" v-if="CheckData">
       <div v-for="(item, index) in this.data.results" :key="index">
-      <li v-if="category == 'films'"><FilmsListItem v-bind:data="item" v-on:ToggleFilmInfo="ToggleFilmInfo"/></li>
-      <li v-if="category == 'people'"><PeopleListItem v-bind:data="item" v-on:TogglePeopleInfo="TogglePeopleInfo"/></li>
+      <li v-if="category == 'films'"><FilmsListItem v-bind:data="item" v-on:ToggleFilmInfo="ToggleFilmInfo" v-bind:category="category"/></li>
+      <li v-if="category == 'people'"><PeopleListItem v-bind:data="item" v-on:TogglePeopleInfo="TogglePeopleInfo" v-bind:category="category"/></li>
       </div>
     </ol>
     <label v-else>Fetching Data...</label>
@@ -61,5 +61,23 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.list-container{
+  border: #0b5689 solid 0.5vw;
+  width: 79vw;
+  margin:auto;
+  margin-bottom: 5vw;
+  background-color: #123e5c;
+}
+
+li{
+  margin-bottom: 1vw;
+}
+
+.films{
+  border: #7a0d0c solid 0.5vw;
+  background-color: #531110
+}
+
+
 
 </style>

@@ -25,6 +25,7 @@ export default {
   name: 'FilmListItem',
   props: {
     data: Object,
+    category: String,
   },
 
   methods:{

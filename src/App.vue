@@ -1,8 +1,8 @@
 <template>
-<div>
-  <Header/>
-  <Main/>
-  <Footer/>
+<div class="app-container">
+  <Header class="header"/>
+  <Main class="main"/>
+  <Footer class="footer"/>
 </div>
 </template>
 
@@ -21,7 +21,38 @@ export default {
   }
 }
 </script>
-
 <style>
+*{
+  color: #ffe81f;
+  font-family: "Star Jedi";
+  text-transform: lowercase;
+  font-size: 1.3vw;
+}
+body{
+  background-color: #020619;
+  margin: 0px;
+  
+}
+.app-container{
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  height: 13vw;
+  flex-shrink: 0;
+}
+
+.footer {
+  height: 15vw;
+  flex-shrink: 0;
+}
+
+.main {
+  flex: 1 0 auto;
+}
+@font-face {
+  font-family: "Star Jedi";
+  src: local("Star Jedi"), url(./fonts/Starjedi.ttf) format("truetype");
+  }
 
 </style>
