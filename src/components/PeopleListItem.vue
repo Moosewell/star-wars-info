@@ -3,9 +3,9 @@
       <label>{{this.data.name}}</label>
       <button v-on:click="ToggleInfo">{{data.isOpen ? '-' : '+'}}</button>
       <ul v-if="data.isOpen">
-        <li>Birth Year: {{this.data.birth_year}}</li>
-        <li>Eye Color: {{this.data.eye_color}}</li>
-        <li>Films:
+        <li><span>Birth Year:</span> {{this.data.birth_year}}</li>
+        <li><span>Eye Color:</span> {{this.data.eye_color}}</li>
+        <li><span>Films:</span>
           <ul v-if="CompareFilmLength">
             <div v-for="(title, index) in titles" :key="index" >
               <li>{{title}}</li>
@@ -69,18 +69,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-button{
-  background-color: #0b5689;
-  border: solid 0.1vw #152e3f;
-  border-radius: 0.5vw;
-  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  margin-left: 1vw;
-  width: 2.5vw;
-  height: 2.5vw;
-  text-align: center;
-}
 
-button:hover{
-  border: solid 0.1vw #ffe81f;
-}
 </style>

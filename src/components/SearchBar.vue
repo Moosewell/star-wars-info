@@ -1,6 +1,6 @@
 <template>
   <div>
-  <input v-model="inputString" type="text" v-bind:placeholder="searchBarPlaceholder">
+  <input v-bind:class="{films: category == 'films'}" v-model="inputString" type="text" v-bind:placeholder="searchBarPlaceholder">
   </div>
 </template>
 
@@ -97,5 +97,13 @@ export default {
   }
   input:hover{
     border-color: #ffe81f;
+  }
+
+  .films{
+    border: solid 0.2vw #7a0d0c;
+  }
+
+  .films::placeholder{
+    color: #7a0d0c;
   }
 </style>

@@ -3,10 +3,10 @@
       <label>{{this.data.title}}</label>
       <button v-on:click="ToggleInfo">{{data.isOpen ? '-' : '+'}}</button>
       <ul v-show="data.isOpen">
-        <li>Episode ID: {{this.data.episode_id}}</li>
-        <li>Release Date: {{this.data.release_date}}</li>
-        <li>Opening Crawl: {{this.data.opening_crawl}}</li>
-        <li>Characters:
+        <li><span>Episode ID:</span> {{this.data.episode_id}}</li>
+        <li><span>Release Date:</span> {{this.data.release_date}}</li>
+        <li><span>Opening Crawl:</span> {{this.data.opening_crawl}}</li>
+        <li><span>Characters:</span>
           <ul v-if="CompareCharactersLength">
             <div v-for="(character, index) in characters" :key="index">
               <li><PeopleListItem v-bind:data="character" v-on:TogglePeopleInfo="TogglePeopleInfo"/></li>

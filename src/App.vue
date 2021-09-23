@@ -26,7 +26,7 @@ export default {
   color: #ffe81f;
   font-family: "Star Jedi";
   text-transform: lowercase;
-  font-size: 1.3vw;
+  font-size: 1.5vw;
 }
 body{
   background-color: #020619;
@@ -36,6 +36,7 @@ body{
 .app-container{
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 .header {
   height: 13vw;

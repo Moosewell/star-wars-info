@@ -1,8 +1,8 @@
 <template>
 <div class="buttons-container">
-  <button :disabled="this.data.previous == null || this.data.isFetching" v-on:click="$emit('SwitchPage', this.data.previous)">Previous page</button>
+  <button :disabled="this.data.previous == null || this.data.isFetching" v-on:click="$emit('SwitchPage', this.data.previous)" v-bind:class="{films: category == 'films'}">Previous page</button>
   <label>Page {{CalculatePage}} out of {{CalculatePageAmount}}</label>
-  <button :disabled="this.data.next == null || this.data.isFetching" v-on:click="$emit('SwitchPage', this.data.next)">Next page</button>
+  <button :disabled="this.data.next == null || this.data.isFetching" v-on:click="$emit('SwitchPage', this.data.next)" v-bind:class="{films: category == 'films'}">Next page</button>
 </div>
 </template>
 
@@ -12,6 +12,7 @@ export default {
   name: 'List',
   props: {
     data: Object,
+    category: String,
   },
   data: () => ({
     
@@ -67,7 +68,30 @@ button:hover{
 label{
   color: #020619;
   -webkit-text-stroke: 0.05vw #ffe81f;
-  margin: 1vw;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+  text-align: center;
+  width: 20vw;
   font-size: 1.5vw;
+}
+
+.films{
+  border: #410807 solid 0.1vw;
+  background-color: #7a0d0c
+}
+
+button:disabled{
+  background-color: #123e5c;
+}
+
+button:disabled:hover{
+border: solid 0.1vw #152e3f;
+}
+
+.films:disabled{
+  background-color: #531110;
+}
+.films:disabled:hover{
+  border: #410807 solid 0.1vw;
 }
 </style>
