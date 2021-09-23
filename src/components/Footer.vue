@@ -20,7 +20,7 @@ export default {
 .footer-container{
   background-color: #ffe81f;
   display: flex;
-  flex-direction: horizontal;
+  flex-direction: row;
 }
 
 p{

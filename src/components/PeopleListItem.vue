@@ -11,7 +11,7 @@
               <li>{{title}}</li>
             </div>
           </ul>
-          <label v-else>Fetching Data...</label>
+          <label v-else class="fetching">Fetching Data... <img class="gif" src="../assets/gif/giphy.gif"></label>
         </li>
       </ul>
   </div>

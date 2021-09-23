@@ -12,7 +12,7 @@
               <li><PeopleListItem v-bind:data="character" v-on:TogglePeopleInfo="TogglePeopleInfo"/></li>
             </div>
           </ul>
-          <label v-else>Fetching Data...</label>
+            <label v-else class="fetching">Fetching Data... <img class="gif" src="../assets/gif/giphy.gif"></label>
         </li>
       </ul>
   </div>

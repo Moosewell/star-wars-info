@@ -2,7 +2,7 @@
   <div class="main-container">
     <SearchBar ref="search" v-on:SearchData="handleSearchData" v-bind:category="searchCategory"/>
     <Menu v-on:pickCategory="handlePickCategory" v-bind:data="data"/>
-    <List v-bind:data="data" v-bind:category="searchCategory" v-on:SwitchPage="SwitchPage"/>
+    <List class="list" v-bind:data="data" v-bind:category="searchCategory" v-on:SwitchPage="SwitchPage"/>
   </div>
 </template>
 
@@ -55,4 +55,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.main-container{
+  display: flex;
+  flex-direction: column;
+}
+.list{
+  flex-grow: 1;
+}
 </style>

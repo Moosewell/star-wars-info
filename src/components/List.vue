@@ -2,14 +2,16 @@
 <div class="list-container" v-bind:class="{ films: category == 'films' }">
   <Buttons v-bind:data="data" v-on:SwitchPage="SwitchPage" v-bind:category="category"/>
     <ol class="list" v-if="CheckData">
-      <hr v-if="this.data.results != 0" v-bind:class="{filmsLine: category == 'films'}">
       <div v-for="(item, index) in this.data.results" :key="index">
       <li v-if="category == 'films'"><FilmsListItem class="listItem" v-bind:class="{filmsButtons: category == 'films'}" v-bind:data="item" v-on:ToggleFilmInfo="ToggleFilmInfo" v-bind:category="category"/></li>
       <li v-if="category == 'people'"><PeopleListItem class="listItem" v-bind:class="{filmsButtons: category == 'films'}" v-bind:data="item" v-on:TogglePeopleInfo="TogglePeopleInfo" v-bind:category="category"/></li>
-      <hr v-bind:class="{filmsLine: category == 'films'}">
+      <hr v-if="index != this.data.results.length - 1" v-bind:class="{filmsLine: category == 'films'}">
       </div>
     </ol>
-    <label v-else>Fetching Data...</label>
+    <div v-else>
+      <label class="fetching">Fetching Data...</label>
+      <img src="../assets/gif/giphy.gif" class="gif">
+    </div>
 </div>
 </template>
 
@@ -69,7 +71,7 @@ export default {
   margin:auto;
   margin-bottom: 5vw;
   background-color: #123e5c;
-  min-height: 45vh;
+  min-height: 54vw;
 }
 
 li{
@@ -126,6 +128,31 @@ hr{
 .filmsLine{
   border: #4d0908 solid 0.2vw;
   background-color: #4d0908;
+}
+
+.fetching{
+  display: block;
+  width: 30vw;
+  text-align: center;
+  margin:auto;
+  margin-top: 3vw;
+  margin-bottom: 1vw;
+  font-size: 3vw;
+  color: white;
+}
+.gif{
+  width: 20vw;
+  border: none;
+  display:block;
+  margin: auto;
+}
+
+.listItem::v-deep .fetching{
+color: white;
+margin-left: 3vw;
+}
+.listItem::v-deep .gif{
+  width: 1.5vw;
 }
 
 

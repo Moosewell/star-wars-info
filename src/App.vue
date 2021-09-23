@@ -11,7 +11,6 @@ import Header from './components/Header.vue'
 import Main from './components/Main.vue'
 import Footer from './components/Footer.vue'
 
-
 export default {
   name: 'App',
   components: {
@@ -40,16 +39,10 @@ body{
 }
 .header {
   height: 13vw;
-  flex-shrink: 0;
-}
-
-.footer {
-  height: 15vw;
-  flex-shrink: 0;
 }
 
 .main {
-  flex: 1 0 auto;
+  flex-grow: 1;
 }
 @font-face {
   font-family: "Star Jedi";
